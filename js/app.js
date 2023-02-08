@@ -11,20 +11,27 @@ function invert(word) {
     return inverted
 }
 
-function isPalindrome(word) {
+function isEqual(splittedWord1, splittedWord2) {
     let message
-    let lowercased = lowercaseWord(word)
-    for (let i = 0; i < invert(word).length; i++) {
-        if ((invert(lowercased)[i]) === (lowercased.split('')[i])) {
+    for (let i = 0; i < splittedWord2.length; i++) {
+        if (splittedWord1[i] === splittedWord2[i]) {
             console.log('la lettera è uguale')
             message = true
         } else {
             console.log('la lettera è diversa')
             message = false
+            break;
         }
     }
     console.log(message)
-    if (message === true) {
+    return message
+}
+
+function isPalindrome(word) {
+    let lowercased = lowercaseWord(word)
+    let splittedInverted = invert(lowercased)
+    let splittedOriginal = lowercased.split('')
+    if (isEqual(splittedInverted, splittedOriginal) === true) {
         console.log('la parola', word,'è palindroma')
     } else {
         console.log('la parola', word,'non è palindroma')
